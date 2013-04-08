@@ -1,5 +1,5 @@
-package Dist::Zilla::PluginBundle::RJBS;
-# ABSTRACT: BeLike::RJBS when you build your dists
+package Dist::Zilla::PluginBundle::INGY;
+# ABSTRACT: BeLike::INGY when you build your dists
 
 use Moose;
 use Moose::Autobox;
@@ -8,7 +8,7 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 =head1 DESCRIPTION
 
-This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
+This is the plugin bundle that INGY uses.  It is more or less equivalent to:
 
   [Git::GatherDir]
   [@Basic]
@@ -27,10 +27,10 @@ This is the plugin bundle that RJBS uses.  It is more or less equivalent to:
   [ReportVersions::Tiny]
 
   [PodWeaver]
-  config_plugin = @RJBS
+  config_plugin = @INGY
 
   [GithubMeta]
-  user = rjbs
+  user = INGY
   remote = github
   remote = origin
 
@@ -82,14 +82,14 @@ has weaver_config => (
   is      => 'ro',
   isa     => 'Str',
   lazy    => 1,
-  default => sub { $_[0]->payload->{weaver_config} || '@RJBS' },
+  default => sub { $_[0]->payload->{weaver_config} || '@INGY' },
 );
 
 sub configure {
   my ($self) = @_;
 
   $self->log_fatal("you must not specify both weaver_config and is_task")
-    if $self->is_task and $self->weaver_config ne '@RJBS';
+    if $self->is_task and $self->weaver_config ne '@INGY';
 
   $self->add_plugins('Git::GatherDir');
   $self->add_plugins('CheckPrereqsIndexed');
@@ -151,7 +151,7 @@ sub configure {
 
   $self->add_plugins(
     [ GithubMeta => {
-      user   => 'rjbs',
+      user   => 'ingydotnet',
       remote => [ qw(github origin) ],
       issues => $self->github_issues,
     } ],
