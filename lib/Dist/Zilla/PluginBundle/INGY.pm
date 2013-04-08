@@ -31,7 +31,6 @@ This is the plugin bundle that INGY uses.  It is more or less equivalent to:
 
   [GithubMeta]
   user = INGY
-  remote = github
   remote = origin
 
   [@Git]
@@ -154,7 +153,7 @@ sub configure {
   $self->add_plugins(
     [ GithubMeta => {
       user   => 'ingydotnet',
-      remote => [ qw(github origin) ],
+      remote => [ qw(origin) ],
       issues => $self->github_issues,
     } ],
   );
@@ -164,7 +163,6 @@ sub configure {
     remotes_must_exist => 0,
     push_to    => [
       'origin :',
-      'github :',
     ],
   });
 }
