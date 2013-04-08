@@ -1,5 +1,10 @@
 # Revision history for {{$dist->name}}
 ---
+version: 0.0.2
+date:    Mon Apr  8 16:15:16 PDT 2013
+changes:
+- Remove 'github' as a git remote origin
+---
 version: 0.0.1
 date:    Mon Apr  8 12:05:40 PDT 2013
 changes:
