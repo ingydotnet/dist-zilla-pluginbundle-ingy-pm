@@ -127,8 +127,10 @@ sub configure {
     MetaConfig
     MetaJSON
     NextRelease
-    Test::ChangesHasContent
-    PodSyntaxTests
+    ),
+    # XXX Fix for ingy style
+    #Test::ChangesHasContent
+    qw(PodSyntaxTests
     Test::Compile
     ReportVersions::Tiny
   ));
