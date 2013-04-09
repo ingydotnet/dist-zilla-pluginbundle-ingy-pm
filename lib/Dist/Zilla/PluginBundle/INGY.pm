@@ -66,7 +66,7 @@ sub configure {
     } else {
       $self->add_plugins([
         'Git::NextVersion' => {
-          version_regexp => '^([0-9]+\.[0-9]+)$',
+          version_regexp => '^([0-9]+\.[0-9]+(?:\.[0-9]+)?)$',
         }
       ]);
     }
