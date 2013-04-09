@@ -1,49 +1,10 @@
 package Dist::Zilla::PluginBundle::INGY;
-# ABSTRACT: BeLike::INGY when you build your dists
 
 use Moose;
 use Moose::Autobox;
 use Dist::Zilla 2.100922; # TestRelease
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
-=head1 DESCRIPTION
-
-This is the plugin bundle that INGY uses.  It is more or less equivalent to:
-
-  [Git::GatherDir]
-  [@Basic]
-  ; ...but without GatherDir and ExtraTests
-
-  [AutoPrereqs]
-  [Git::NextVersion]
-  [PkgVersion]
-  [MetaConfig]
-  [MetaJSON]
-  [NextRelease]
-
-  [Test::ChangesHasContent]
-  [PodSyntaxTests]
-  [Test::Compile]
-  [ReportVersions::Tiny]
-
-  [PodWeaver]
-  config_plugin = @INGY
-
-  [GithubMeta]
-  user = INGY
-  remote = origin
-
-  [@Git]
-  tag_format = %v
-
-If the C<task> argument is given to the bundle, PodWeaver is replaced with
-TaskWeaver and Git::NextVersion is replaced with AutoVersion.  If the
-C<manual_version> argument is given, AutoVersion is omitted.
-
-If the C<github_issues> argument is given, and true, the F<META.*> files will
-point to GitHub issues for the dist's bugtracker.
-
-=cut
 
 use Dist::Zilla::PluginBundle::Basic;
 use Dist::Zilla::PluginBundle::Filter;
@@ -77,18 +38,8 @@ has github_issues => (
   default => sub { $_[0]->payload->{github_issues} },
 );
 
-has weaver_config => (
-  is      => 'ro',
-  isa     => 'Str',
-  lazy    => 1,
-  default => sub { $_[0]->payload->{weaver_config} || '@INGY' },
-);
-
 sub configure {
   my ($self) = @_;
-
-  $self->log_fatal("you must not specify both weaver_config and is_task")
-    if $self->is_task and $self->weaver_config ne '@INGY';
 
   $self->add_plugins('Git::GatherDir');
   $self->add_plugins('CheckPrereqsIndexed');
@@ -122,14 +73,16 @@ sub configure {
   }
 
   $self->add_plugins(qw(
+    ReadmeFromPod
     PkgVersion
     MetaConfig
     MetaJSON
     NextRelease
-    ),
-    # XXX Fix for ingy style
-    #Test::ChangesHasContent
-    qw(PodSyntaxTests
+  ),
+  # XXX Fix for ingy style
+  # Test::ChangesHasContent
+  qw(
+    PodSyntaxTests
     Test::Compile
     ReportVersions::Tiny
   ));
@@ -141,14 +94,6 @@ sub configure {
       'Test::More' => '0.96'
     } ],
   );
-
-  if ($self->is_task) {
-    $self->add_plugins('TaskWeaver');
-  } else {
-    $self->add_plugins([
-      PodWeaver => { config_plugin => $self->weaver_config }
-    ]);
-  }
 
   $self->add_plugins(
     [ GithubMeta => {
@@ -169,4 +114,59 @@ sub configure {
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
+
 1;
+
+=encoding utf8
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::INGY - BeLike::INGY when you build your dists
+
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+    [@INGY]
+
+=head1 DESCRIPTION
+
+This is the plugin bundle that INGY uses.  It is more or less equivalent to:
+
+  [Git::GatherDir]
+  [@Basic]
+  ; ...but without GatherDir and ExtraTests
+
+  [AutoPrereqs]
+  [Git::NextVersion]
+  [PkgVersion]
+  [MetaConfig]
+  [MetaJSON]
+  [NextRelease]
+
+  [Test::ChangesHasContent]
+  [PodSyntaxTests]
+  [Test::Compile]
+  [ReportVersions::Tiny]
+
+  [GithubMeta]
+  user = INGY
+  remote = origin
+
+  [@Git]
+  tag_format = %v
+
+=head1 AUTHOR
+
+Ingy döt Net <ingy@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2013. Ingy döt Net.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+See http://www.perl.com/perl/misc/Artistic.html
+
+=cut

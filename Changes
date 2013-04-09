@@ -1,5 +1,10 @@
 # Revision history for {{$dist->name}}
 ---
+version: 0.0.3
+date:    Mon Apr  8 20:22:37 PDT 2013
+changes:
+- Remove Pod::Weaver stuff
+---
 version: 0.0.2
 date:    Mon Apr  8 16:15:16 PDT 2013
 changes:
