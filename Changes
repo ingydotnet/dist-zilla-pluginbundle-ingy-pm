@@ -1,10 +1,13 @@
 # Revision history for {{$dist->name}}
+version: 0.0.4
+date:    Mon Oct 28 14:28:37 MYT 2013
+changes:
+- Use PluginBundle::Config::Slicer
 ---
 version: 0.0.3
 date:    Mon Apr  8 20:22:37 PDT 2013
 changes:
 - Remove Pod::Weaver stuff
-- Use PluginBundle::Config::Slicer
 ---
 version: 0.0.2
 date:    Mon Apr  8 16:15:16 PDT 2013
