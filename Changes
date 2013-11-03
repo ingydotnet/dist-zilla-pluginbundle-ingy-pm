@@ -1,4 +1,11 @@
 # Revision history for {{$dist->name}}
+---
+version: 0.0.5
+date:    Sun Nov  3 18:07:23 UTC 2013
+changes:
+- Use OurPkgVersion instead of PkgVersion
+- Use Test::ReportPrereqs instead of ReportVersions::Tiny
+---
 version: 0.0.4
 date:    Mon Oct 28 14:28:37 MYT 2013
 changes:
