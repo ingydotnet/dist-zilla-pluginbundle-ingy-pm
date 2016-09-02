@@ -158,6 +158,13 @@ This is the plugin bundle that INGY uses.  It is more or less equivalent to:
   [@Git]
   tag_format = %v
 
+The bundle implements the roles
+L<Config::Slicer|Dist::Zilla::Role::PluginBundle::Config::Slicer>
+(to easily set config options in bundled plugins) and
+L<PluginRemover|Dist::Zilla::Role::PluginBundle::PluginRemover>
+(more convenient than wrapping with
+L<[@Filter]|Dist::Zilla::PluginBundle::Filter>).
+
 =head1 AUTHOR
 
 Ingy döt Net <ingy@cpan.org>
