@@ -136,27 +136,43 @@ In your F<dist.ini>:
 This is the plugin bundle that INGY uses.  It is more or less equivalent to:
 
   [Git::GatherDir]
-  [@Basic]
-  ; ...but without GatherDir and ExtraTests
+  [CheckPrereqsIndexed]
+  [CheckExtraTests]
+
+  ; @Basic without GatherDir and ExtraTests
+  [@Filter]
+  -bundle = @Basic
+  -remove = GatherDir
+  -remove = ExtraTests
 
   [AutoPrereqs]
   [Git::NextVersion]
-  [PkgVersion]
+  version_regexp = ^([0-9]+\.[0-9]+(?:\.[0-9]+)?)$
+  {ReadmeFromPod}
+  [OurPkgVersion]
   [MetaConfig]
   [MetaJSON]
   [NextRelease]
 
-  [Test::ChangesHasContent]
+  ;[Test::ChangesHasContent]
   [PodSyntaxTests]
   [Test::Compile]
-  [ReportVersions::Tiny]
+  [Test::ReportPrereqs]
+
+  [Prereqs / TestMoreWithSubtests]
+  -phase = test
+  -type = requires
+  Test::More = 0.96
 
   [GithubMeta]
-  user = INGY
+  user = ingydotnet
   remote = origin
+  ;issues =
 
   [@Git]
   tag_format = %v
+  remotes_must_exist = 0
+  ;push_to = origin
 
 The bundle implements the roles
 L<Config::Slicer|Dist::Zilla::Role::PluginBundle::Config::Slicer>
