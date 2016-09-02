@@ -99,6 +99,7 @@ sub configure {
 
   $self->add_plugins(
     [ GithubMeta => {
+      ':version' => '0.18',
       user   => 'ingydotnet',
       remote => [ qw(origin) ],
       issues => $self->github_issues,
