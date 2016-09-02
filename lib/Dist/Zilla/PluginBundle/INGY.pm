@@ -1,7 +1,6 @@
 package Dist::Zilla::PluginBundle::INGY;
 
 use Moose;
-use Moose::Autobox;
 use Dist::Zilla 2.100922; # TestRelease
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 with 'Dist::Zilla::Role::PluginBundle::Config::Slicer';
