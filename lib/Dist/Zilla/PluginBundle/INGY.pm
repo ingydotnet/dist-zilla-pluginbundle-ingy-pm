@@ -6,6 +6,7 @@ use Dist::Zilla 2.100922; # TestRelease
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 with 'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 with 'Dist::Zilla::Role::PluginBundle::PluginRemover';
+with 'Dist::Zilla::Role::BundleDeps';
 
 
 use Dist::Zilla::PluginBundle::Basic;
