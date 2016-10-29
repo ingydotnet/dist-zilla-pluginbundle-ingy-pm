@@ -1,5 +1,10 @@
 # Revision history for {{$dist->name}}
 ---
+version: 0.0.6
+date:    Wed Aug 31 10:16:52 PDT 2016
+changes:
+- Update to modern plugins. @paultcochrane++
+---
 version: 0.0.5
 date:    Sun Nov  3 18:07:23 UTC 2013
 changes:

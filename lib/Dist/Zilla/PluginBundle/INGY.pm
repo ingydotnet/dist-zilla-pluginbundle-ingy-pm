@@ -145,10 +145,10 @@ This is the plugin bundle that INGY uses.  It is more or less equivalent to:
   [MetaJSON]
   [NextRelease]
 
-  [Test::ChangesHasContent]
+  ; [Test::ChangesHasContent]
   [PodSyntaxTests]
   [Test::Compile]
-  [ReportVersions::Tiny]
+  [Test::ReportPrereqs]
 
   [GithubMeta]
   user = INGY
@@ -163,7 +163,7 @@ Ingy döt Net <ingy@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2013. Ingy döt Net.
+Copyright (c) 2013-2016. Ingy döt Net.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
